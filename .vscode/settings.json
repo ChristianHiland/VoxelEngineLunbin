@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "string": "cpp",
+        "cfloat": "cpp",
+        "cmath": "cpp",
+        "random": "cpp"
+    }
+}
