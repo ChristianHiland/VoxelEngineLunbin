@@ -32,6 +32,9 @@ void OgldevFileError(const char* pFileName, uint line, const char* pFileError);
 #define minH(a,b) (a) < (b) ? (a) : (b)
 #define maxH(a,b) (a) > (b) ? (a) : (b)
 
+#define SNPRINTF snprintf
 #define VSNPRINTF vsnprintf
+#define RANDOM random
+#define SRANDOM srandom(getpid())
 
 #endif
