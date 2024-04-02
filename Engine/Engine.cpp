@@ -8,29 +8,36 @@
 #include "util.cpp"
 #include "pipline.cpp"
 #include "Shaders.cpp"
+#include "glut_backend.cpp"
+
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+
 
 // IDK (Yet)
 GLuint VBO;
 GLuint IBO;
+
 PersProjInfo gPersProjInfo;
 
-
 // Loading The Scene
-static void RenderSceneCB()
-{
+static void RenderSceneCB() {
+    pGameCamera->OnRender();
     // Clearing the window
     glClear(GL_COLOR_BUFFER_BIT);
 
     // Figure Out
     static float Scale = 0.0f;
+    Scale += 0.1f;
     Pipeline p;
     p.Rotate(0.0f, Scale, 0.0f);
-    p.WorldPos(0.0f, 0.0f, 5.0f);
+    p.WorldPos(0.0f, 0.0f, 3.0f);
+    //p.SetCamera(*pGameCamera);
     p.SetPerspectiveProj(gPersProjInfo);
 
-    glUniformMatrix4fv(gWorldLocation, 1, GL_TRUE, (const GLfloat*)p.GetWPTrans());
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (const GLfloat*)p.GetWPTrans());
     glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
     glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);

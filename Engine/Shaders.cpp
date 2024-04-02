@@ -1,6 +1,6 @@
 #include "util.h"
 
-GLuint gWorldLocation;
+GLuint gWVPLocation;
 
 // The Shader Files!!!
 const char* pVSFileName = "Engine/Shaders/shader.vs";
@@ -54,6 +54,6 @@ static void CompileShaders() {
         fprintf(stderr, "Invalid shader program: '%s'\n", ErrorLog);
         exit(1);}
     glUseProgram(ShaderProgram);
-    gWorldLocation = glGetUniformLocation(ShaderProgram, "gWorld");
-    assert(gWorldLocation != 0xFFFFFFFF);
+    gWVPLocation = glGetUniformLocation(ShaderProgram, "gWVP");
+    assert(gWVPLocation != 0xFFFFFFFF);
 }

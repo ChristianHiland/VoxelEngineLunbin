@@ -66,7 +66,7 @@ const Matrix4f& Pipeline::GetWVOrthoPTrans()
 
 const Matrix4f& Pipeline::GetWVTrans()
 {
-        GetWorldTrans();
+    GetWorldTrans();
     GetViewTrans();
 
         m_WVtransformation = m_Vtransformation * m_Wtransformation;

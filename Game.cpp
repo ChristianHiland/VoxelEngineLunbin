@@ -3,6 +3,9 @@
 static void InitializeGlutCallbacks() {
     glutDisplayFunc(RenderSceneCB);
     glutIdleFunc(RenderSceneCB);
+    //glutSpecialFunc(SpecialKeyboardCB);
+    //glutPassiveMotionFunc(PassiveMouseCB);
+    //glutKeyboardFunc(KeyboardCB);
 }
 // Main Start Point
 int main(int argc, char** argv)
@@ -10,7 +13,6 @@ int main(int argc, char** argv)
     // Setting Up The Window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH);
-    int WINDOW_WIDTH = 1920; int WINDOW_HEIGHT = 1080;
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     int x = 200; int y = 100;
     glutInitWindowPosition(x, y);

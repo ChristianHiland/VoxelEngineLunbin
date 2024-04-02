@@ -3,7 +3,7 @@
 
 #include "vectors.h"
 #include "camera.h"
-#include "world_transform.h"
+#include "world_transform.cpp"
 
 struct Orientation {
     Vector3f m_scale;

@@ -6,5 +6,6 @@
         "cfloat": "cpp",
         "cmath": "cpp",
         "random": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": true
 }
