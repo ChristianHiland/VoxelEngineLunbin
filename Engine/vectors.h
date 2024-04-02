@@ -331,24 +331,19 @@ public:
         m[0][0] = a00; m[0][1] = a01; m[0][2] = a02; m[0][3] = a03;
         m[1][0] = a10; m[1][1] = a11; m[1][2] = a12; m[1][3] = a13;
         m[2][0] = a20; m[2][1] = a21; m[2][2] = a22; m[2][3] = a23;
-        m[3][0] = a30; m[3][1] = a31; m[3][2] = a32; m[3][3] = a33;
-    }
+        m[3][0] = a30; m[3][1] = a31; m[3][2] = a32; m[3][3] = a33;}
     // constructor from Assimp matrix
     Matrix4f(const aiMatrix4x4& AssimpMatrix) {
         m[0][0] = AssimpMatrix.a1; m[0][1] = AssimpMatrix.a2; m[0][2] = AssimpMatrix.a3; m[0][3] = AssimpMatrix.a4;
         m[1][0] = AssimpMatrix.b1; m[1][1] = AssimpMatrix.b2; m[1][2] = AssimpMatrix.b3; m[1][3] = AssimpMatrix.b4;
         m[2][0] = AssimpMatrix.c1; m[2][1] = AssimpMatrix.c2; m[2][2] = AssimpMatrix.c3; m[2][3] = AssimpMatrix.c4;
-        m[3][0] = AssimpMatrix.d1; m[3][1] = AssimpMatrix.d2; m[3][2] = AssimpMatrix.d3; m[3][3] = AssimpMatrix.d4;
-    }
+        m[3][0] = AssimpMatrix.d1; m[3][1] = AssimpMatrix.d2; m[3][2] = AssimpMatrix.d3; m[3][3] = AssimpMatrix.d4;}
     Matrix4f(const aiMatrix3x3& AssimpMatrix) {
         m[0][0] = AssimpMatrix.a1; m[0][1] = AssimpMatrix.a2; m[0][2] = AssimpMatrix.a3; m[0][3] = 0.0f;
         m[1][0] = AssimpMatrix.b1; m[1][1] = AssimpMatrix.b2; m[1][2] = AssimpMatrix.b3; m[1][3] = 0.0f;
         m[2][0] = AssimpMatrix.c1; m[2][1] = AssimpMatrix.c2; m[2][2] = AssimpMatrix.c3; m[2][3] = 0.0f;
-        m[3][0] = 0.0f           ; m[3][1] = 0.0f           ; m[3][2] = 0.0f           ; m[3][3] = 1.0f;
-    }
-    void SetZero() {
-        ZERO_MEM(m);
-    }
+        m[3][0] = 0.0f           ; m[3][1] = 0.0f           ; m[3][2] = 0.0f           ; m[3][3] = 1.0f;}
+    void SetZero() {ZERO_MEM(m);}
     Matrix4f Transpose() const {
         Matrix4f n;
         for (unsigned int i = 0 ; i < 4 ; i++) {
@@ -362,8 +357,7 @@ public:
         m[0][0] = 1.0f; m[0][1] = 0.0f; m[0][2] = 0.0f; m[0][3] = 0.0f;
         m[1][0] = 0.0f; m[1][1] = 1.0f; m[1][2] = 0.0f; m[1][3] = 0.0f;
         m[2][0] = 0.0f; m[2][1] = 0.0f; m[2][2] = 1.0f; m[2][3] = 0.0f;
-        m[3][0] = 0.0f; m[3][1] = 0.0f; m[3][2] = 0.0f; m[3][3] = 1.0f;
-    }
+        m[3][0] = 0.0f; m[3][1] = 0.0f; m[3][2] = 0.0f; m[3][3] = 1.0f;}
     inline Matrix4f operator*(const Matrix4f& Right) const {
         Matrix4f Ret;
         for (unsigned int i = 0 ; i < 4 ; i++) {
@@ -371,8 +365,7 @@ public:
                 Ret.m[i][j] = m[i][0] * Right.m[0][j] +
                               m[i][1] * Right.m[1][j] +
                               m[i][2] * Right.m[2][j] +
-                              m[i][3] * Right.m[3][j];
-            }
+                              m[i][3] * Right.m[3][j];}
         }
         return Ret;
     }
@@ -382,11 +375,8 @@ public:
         r.y = m[1][0]* v.x + m[1][1]* v.y + m[1][2]* v.z + m[1][3]* v.w;
         r.z = m[2][0]* v.x + m[2][1]* v.y + m[2][2]* v.z + m[2][3]* v.w;
         r.w = m[3][0]* v.x + m[3][1]* v.y + m[3][2]* v.z + m[3][3]* v.w;
-        return r;
-    }
-    operator const float*() const {
-        return &(m[0][0]);
-    }
+        return r;}
+    operator const float*() const { return &(m[0][0]); } // Func
     void Print() const {
         for (int i = 0 ; i < 4 ; i++) {
             printf("%f %f %f %f\n", m[i][0], m[i][1], m[i][2], m[i][3]);
@@ -411,8 +401,7 @@ public:
 private:
     void InitRotationX(float RotateX);
     void InitRotationY(float RotateY);
-    void InitRotationZ(float RotateZ);
-};
+    void InitRotationZ(float RotateZ); };
 class Matrix3f {
 public:
     float m[3][3];
@@ -421,8 +410,7 @@ public:
     Matrix3f(const Matrix4f& a) {
         m[0][0] = a.m[0][0]; m[0][1] = a.m[0][1]; m[0][2] = a.m[0][2];
         m[1][0] = a.m[1][0]; m[1][1] = a.m[1][1]; m[1][2] = a.m[1][2];
-        m[2][0] = a.m[2][0]; m[2][1] = a.m[2][1]; m[2][2] = a.m[2][2];
-    }
+        m[2][0] = a.m[2][0]; m[2][1] = a.m[2][1]; m[2][2] = a.m[2][2];}
     Vector3f operator*(const Vector3f& v) const {
         Vector3f r;
         r.x = m[0][0] * v.x + m[0][1] * v.y + m[0][2] * v.z;
@@ -465,8 +453,7 @@ public:
         MinZ = minH(MinZ, v.z);
         MaxX = minH(MaxX, v.x);
         MaxY = minH(MaxY, v.y);
-        MaxZ = minH(MaxZ, v.z);
-    }
+        MaxZ = minH(MaxZ, v.z);}
     float MinX = FLT_MAX;
     float MaxX = FLT_MIN;
     float MinY = FLT_MAX;
@@ -484,8 +471,7 @@ public:
         o.b = MinY;
         o.t = MaxY;
         o.n = MinZ;
-        o.f = MaxZ;
-    }
+        o.f = MaxZ;}
 };
 class Frustum {
 public:
@@ -517,14 +503,14 @@ public:
         FarBottomRight = Vector4f(FarX, -FarY, FarZ, 1.0f);
     }
     void Transform(const Matrix4f& m) {
-         NearTopLeft     = m * NearTopLeft;
-         NearBottomLeft  = m * NearBottomLeft;
-         NearTopRight    = m * NearTopRight;
-         NearBottomRight = m * NearBottomRight;
-         FarTopLeft     = m * FarTopLeft;
-         FarBottomLeft  = m * FarBottomLeft;
-         FarTopRight    = m * FarTopRight;
-         FarBottomRight = m * FarBottomRight;
+        NearTopLeft     = m * NearTopLeft;
+        NearBottomLeft  = m * NearBottomLeft;
+        NearTopRight    = m * NearTopRight;
+        NearBottomRight = m * NearBottomRight;
+        FarTopLeft     = m * FarTopLeft;
+        FarBottomLeft  = m * FarBottomLeft;
+        FarTopRight    = m * FarTopRight;
+        FarBottomRight = m * FarBottomRight;
     }
     void CalcAABB(AABB& aabb) {
         aabb.Add(NearTopLeft);
@@ -534,8 +520,7 @@ public:
         aabb.Add(FarTopLeft);
         aabb.Add(FarBottomLeft);
         aabb.Add(FarTopRight);
-        aabb.Add(FarBottomRight);
-    }
+        aabb.Add(FarBottomRight);}
     void Print() {
         printf("NearTopLeft "); NearTopLeft.Print();
         printf("NearBottomLeft "); NearBottomLeft.Print();
@@ -544,22 +529,18 @@ public:
         printf("FarTopLeft "); FarTopLeft.Print();
         printf("FarBottomLeft "); FarBottomLeft.Print();
         printf("FarTopRight "); FarTopRight.Print();
-        printf("FarBottomLeft "); FarBottomRight.Print();
-    }
+        printf("FarBottomLeft "); FarBottomRight.Print();}
 };
 class FrustumCulling {
 public:
-    FrustumCulling(const Matrix4f& ViewProj) {
-        Update(ViewProj);
-    }
+    FrustumCulling(const Matrix4f& ViewProj) { Update(ViewProj); }
     void Update(const Matrix4f& ViewProj) {
         ViewProj.CalcClipPlanes(m_leftClipPlane,
                                 m_rightClipPlane,
                                 m_bottomClipPlane,
                                 m_topClipPlane,
                                 m_nearClipPlane,
-                                m_farClipPlane);
-    }
+                                m_farClipPlane);}
     bool IsPointInsideViewFrustum(const Vector3f& p) const {
         Vector4f p4D(p, 1.0f);
         bool Inside =
@@ -575,8 +556,7 @@ private:
     Vector4f m_bottomClipPlane;
     Vector4f m_topClipPlane;
     Vector4f m_nearClipPlane;
-    Vector4f m_farClipPlane;
-};
+    Vector4f m_farClipPlane;};
 void CalcTightLightProjection(const Matrix4f& CameraView,        // in
                               const Vector3f& LightDir,          // in
                               const PersProjInfo& persProjInfo,  // in
