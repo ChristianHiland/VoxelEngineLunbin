@@ -9,6 +9,7 @@
 #include "pipline.cpp"
 #include "Shaders.cpp"
 #include "glut_backend.cpp"
+#include "app.cpp"
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
@@ -22,6 +23,11 @@ PersProjInfo gPersProjInfo;
 
 // Loading The Scene
 static void RenderSceneCB() {
+    Vector3f Pos(5.0f, 1.0f, -3.0f);
+    Vector3f Target(0.0f, 0.0f, 1.0f);
+    Vector3f Up(0.0, 1.0f, 0.0f);
+
+    pGameCamera = new Camera(WINDOW_WIDTH, WINDOW_HEIGHT, Pos, Target, Up);
     pGameCamera->OnRender();
     // Clearing the window
     glClear(GL_COLOR_BUFFER_BIT);
@@ -32,8 +38,9 @@ static void RenderSceneCB() {
     Pipeline p;
     p.Rotate(0.0f, Scale, 0.0f);
     p.WorldPos(0.0f, 0.0f, 3.0f);
-    //p.SetCamera(*pGameCamera);
+    p.SetCamera(pGameCamera->GetPos(), pGameCamera->GetTarget(), pGameCamera->GetUp());
     p.SetPerspectiveProj(gPersProjInfo);
+    Pos = Pos + Vector3f(0.0f, 0.0f, 3.0f);
 
     glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (const GLfloat*)p.GetWPTrans());
     glEnableVertexAttribArray(0);

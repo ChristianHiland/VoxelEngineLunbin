@@ -39,6 +39,9 @@ int main(int argc, char** argv)
     gPersProjInfo.Width = WINDOW_WIDTH;
     gPersProjInfo.zNear = 1.0f;
     gPersProjInfo.zFar = 100.0f;
+
+    
+
     // Keeping The Window Open
     glutMainLoop();
     return 0;
